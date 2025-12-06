@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>한국어 오류 분류기</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        textarea { width: 100%; height: 100px; margin-bottom: 15px; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .result { margin-top: 20px; padding: 10px; background-color: #f0f0f0; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>한국어 맞춤법 오류 유형 분류기</h1>
+        <p>문장을 입력하면 오류 유형을 분류합니다.</p>
+
+        <form method="POST" action="/">
+            <textarea name="sentence" placeholder="여기에 분석할 문장을 입력하세요.">{{ input_sentence if input_sentence else '' }}</textarea>
+            <button type="submit">오류 유형 분류하기</button>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <strong>결과:</strong> {{ result | safe }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
