@@ -1,3 +1,5 @@
+#src/sampler.py
+
 import json
 import zipfile
 from collections import defaultdict
@@ -23,7 +25,7 @@ def load_and_merge_labels(zip_path):
                         if err_type in LABELS:
                             merged[text].add(err_type)
 
-    # Convert sets to sorted lists
+    # 집합을 정렬된 리스트로 바꾸기
     result = []
     for text, label_set in merged.items():
         result.append({

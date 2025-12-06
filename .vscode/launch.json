@@ -1,0 +1,8 @@
+{
+    "name": "Python: Train Model",
+    "type": "python",
+    "request": "launch",
+    "program": "${workspaceFolder}/src/train_model.py",
+    "console": "externalTerminal",
+    "python": "C:\\Python311\\python.exe"
+}
