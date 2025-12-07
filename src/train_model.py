@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 from sklearn.preprocessing import MultiLabelBinarizer
 from datasets import Dataset
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
@@ -19,6 +20,12 @@ val_df['labels'] = val_df['labels'].apply(lambda x: x.split(";"))
 mlb = MultiLabelBinarizer()
 train_labels = mlb.fit_transform(train_df['labels'])
 val_labels = mlb.transform(val_df['labels'])
+
+LABELS_PATH = "./processed/mlb_classes.npy"
+os.makedirs(os.path.dirname(LABELS_PATH), exist_ok=True)
+np.save(LABELS_PATH, mlb.classes_, allow_pickle=True)
+
+print(f"라벨 클래스 {len(mlb.classes_)}개 저장됨 → {LABELS_PATH}")
 
 # 4. Hugging Face Dataset 변환
 train_dataset = Dataset.from_dict({
