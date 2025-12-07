@@ -66,6 +66,8 @@ BERT 기반의 KLUE 모델을 활용한 멀티라벨 분류 모델로 학습되�
  ```
  - 학습 로그
  ![학습 로그 화면](screenshots/log1.png)
+ ![학습 로그 화면](screenshots/log2.png)
+ ![학습 로그 화면](screenshots/log3.png)
  4.2 주요 사항
  - 학습 시 labels는 float 형식으로 변환하여 BCEWithLogitsLoss와 호환
  - Trainer의 compute_metrics는 f1_score 기반 평가
