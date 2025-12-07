@@ -7,8 +7,9 @@ import torch
 from sklearn.metrics import f1_score
 
 # 1. CSV 로드
-train_df = pd.read_csv("processed/train.csv")
-val_df = pd.read_csv("processed/val.csv")
+N_SAMPLES = 20000
+train_df = pd.read_csv("processed/train.csv").head(N_SAMPLES)
+val_df = pd.read_csv("processed/val.csv").head(N_SAMPLES // 10)
 
 # 2. labels 분리
 train_df['labels'] = train_df['labels'].apply(lambda x: x.split(";"))
@@ -62,9 +63,9 @@ model = AutoModelForSequenceClassification.from_pretrained(
 # 8. TrainingArguments 설정 
 training_args = TrainingArguments(
     output_dir="./model_output",
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=16,
-    num_train_epochs=3,
+    per_device_train_batch_size=32,
+    per_device_eval_batch_size=32, 
+    num_train_epochs=1,
     learning_rate=2e-5,
     weight_decay=0.01,
     logging_strategy="steps",
